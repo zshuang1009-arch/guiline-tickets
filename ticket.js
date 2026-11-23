@@ -15,9 +15,10 @@ function loadImage(source){
 async function showTicket(){
   const id=params.get('id')||'', token=params.get('token')||'';
   if(!/^[a-f0-9]{32}$/.test(id)||!token){
-    status.textContent='请扫描你的归线票根二维码。';
+    document.getElementById('cover').hidden=false;
     return;
   }
+  document.getElementById('mobile-ticket').hidden=false;
   const url=new URL('https://esfodpqwhqoiznfccrmi.supabase.co/storage/v1/object/sign/guiline-tickets/'+id+'.json');
   url.searchParams.set('token',token);
   const response=await fetch(url);
